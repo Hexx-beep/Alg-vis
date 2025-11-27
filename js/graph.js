@@ -306,7 +306,35 @@ function init() {
     document.querySelector('.fa-question-circle').closest('button').addEventListener('click', openHelp);
         initModals();
     
-    // Theme toggle
+    // Toggle mobile menu on window resize
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            const sidebar = document.querySelector('.sidebar');
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            
+            if (window.innerWidth > 1024) {
+                sidebar.classList.remove('active');
+                if (mobileMenuToggle) {
+                    mobileMenuToggle.style.display = 'none';
+                }
+            } else {
+                if (mobileMenuToggle) {
+                    mobileMenuToggle.style.display = 'block';
+                }
+            }
+        }, 250);
+    });
+    
+    // Initial check on page load
+    if (window.innerWidth <= 1024) {
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        if (mobileMenuToggle) {
+            mobileMenuToggle.style.display = 'block';
+        }
+    }
+   
    
     // Update initial values
     updateNodeCountValue();
@@ -1546,8 +1574,36 @@ function deleteAllGraphs() {
     alert("All graphs have been deleted. Reset to empty Graph 1.");
 }
 
+// Mobile menu toggle functionality
+function initMobileMenu() {
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    
+    if (mobileMenuToggle && sidebar) {
+        mobileMenuToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+            this.querySelector('i').classList.toggle('fa-bars');
+            this.querySelector('i').classList.toggle('fa-times');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!sidebar.contains(e.target) && e.target !== mobileMenuToggle && !mobileMenuToggle.contains(e.target)) {
+                sidebar.classList.remove('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                if (icon.classList.contains('fa-times')) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
+    }
+}
+
 // Add event listeners after the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize mobile menu
+    initMobileMenu();
     // Delete all graphs button
     document.getElementById('delete-all-graphs-btn').addEventListener('click', deleteAllGraphs);
     

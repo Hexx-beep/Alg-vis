@@ -10,6 +10,101 @@
     overflow: hidden; /* Prevent content from overflowing */
 }
 
+/* Mobile menu toggle */
+.mobile-menu-toggle {
+    display: none;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid #334155;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    color: white;
+    cursor: pointer;
+}
+
+/* Mobile sidebar */
+@media (max-width: 1024px) {
+    .sidebar {
+        position: fixed;
+        top: 4rem;
+        right: -400px;
+        height: calc(100vh - 4rem);
+        transition: right 0.3s ease;
+        z-index: 999;
+    }
+    
+    .sidebar.active {
+        right: 0;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .graph-area {
+        flex-direction: column;
+    }
+    
+    .graph-container {
+        width: 100% !important;
+        height: 60vh;
+    }
+    
+    .results-container {
+        width: 100% !important;
+        height: 40vh !important;
+        border-top: 1px solid #334155 !important;
+        border-left: none !important;
+        border-radius: 0 !important;
+    }
+}
+
+/* Landscape mode for mobile */
+@media (max-height: 480px) and (orientation: landscape) {
+    .main-content {
+        flex-direction: row;
+    }
+    
+    .graph-container {
+        height: 100% !important;
+        width: 60% !important;
+    }
+    
+    .results-container {
+        height: 100% !important;
+        width: 40% !important;
+        border-top: none !important;
+        border-left: 1px solid #334155 !important;
+    }
+    
+    .sidebar {
+        width: 300px !important;
+        min-width: 300px !important;
+    }
+}
+
+/* Adjust touch targets for mobile */
+@media (max-width: 768px) {
+    .node {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 0.8rem !important;
+    }
+    
+    button, .algorithm-btn {
+        padding: 0.75rem 1rem !important;
+        font-size: 0.9rem !important;
+    }
+    
+    #run-algorithm, #refresh-graph {
+        padding: 0.5rem 0.75rem !important;
+        font-size: 0.85rem !important;
+    }
+}
+
 /* Graph area contains graph and sidebar */
 .graph-area {
     display: flex;
