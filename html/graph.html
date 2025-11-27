@@ -93,33 +93,7 @@
                 <div id="nodes-container" class="absolute inset-0"></div>
             </div>
             
-            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-slate-900/80 backdrop-blur-sm rounded-lg p-2 flex space-x-2">
-                <button id="add-node-btn" class="p-2 hover:bg-slate-800 rounded tooltip">
-                    <i class="fas fa-plus text-teal-300"></i>
-                    <span class="tooltip-text">Add Node</span>
-                </button>
-                <button id="generate-graph-btn" class="p-2 hover:bg-slate-800 rounded tooltip">
-                    <i class="fas fa-random text-purple-300"></i>
-                    <span class="tooltip-text">Generate Graph</span>
-                </button>
-                <button id="clear-graph-btn" class="p-2 hover:bg-slate-800 rounded tooltip">
-                    <i class="fas fa-trash-alt text-rose-500"></i>
-                    <span class="tooltip-text">Clear Graph</span>
-                </button>
-                <button id="delete-all-graphs-btn" class="p-2 bg-red-600 hover:bg-red-700 text-white rounded tooltip">
-                    <i class="fas fa-trash-alt mr-1"></i>
-                    Delete ALL Graphs
-                    <span class="tooltip-text">Permanently delete both Graph 1 and Graph 2</span>
-                </button>
-               <button id="new-graph-btn" class="p-2 hover:bg-slate-800 rounded tooltip">
-                    <i class="fas fa-plus-circle glow-effect text-blue-300"></i>
-                    <span class="tooltip-text">New Graph</span>
-                </button>
-                <button id="save-as-graph2-btn" class="p-2 hover:bg-slate-800 rounded tooltip">
-                    <i class="fas fa-save text-blue-400"></i>
-                    <span class="tooltip-text">Save as Graph 2</span>
-                </button>
-            </div>
+            <!-- Graph controls moved to sidebar bottom -->
             
             <!-- Context menus -->
             <div id="node-context-menu" class="node-context-menu">
@@ -399,6 +373,37 @@
             
             <div class="p-4 flex-1">
                 <h2 class="text-lg font-semibold text-slate-200 mb-2">Graph Controls</h2>
+            </div>
+            
+            <!-- Graph Controls Section -->
+            <div class="mt-auto border-t border-slate-800 p-4">
+                <h2 class="text-lg font-semibold text-slate-200 mb-3">Graph Controls</h2>
+                <div class="grid grid-cols-3 gap-2">
+                    <button id="add-node-btn" class="p-2 bg-slate-800 hover:bg-slate-700 rounded flex flex-col items-center justify-center space-y-1 text-xs">
+                        <i class="fas fa-plus text-teal-300 text-sm"></i>
+                        <span>Add Node</span>
+                    </button>
+                    <button id="generate-graph-btn" class="p-2 bg-slate-800 hover:bg-slate-700 rounded flex flex-col items-center justify-center space-y-1 text-xs">
+                        <i class="fas fa-random text-purple-300 text-sm"></i>
+                        <span>Generate</span>
+                    </button>
+                    <button id="clear-graph-btn" class="p-2 bg-slate-800 hover:bg-slate-700 rounded flex flex-col items-center justify-center space-y-1 text-xs">
+                        <i class="fas fa-trash-alt text-rose-500 text-sm"></i>
+                        <span>Clear</span>
+                    </button>
+                    <button id="new-graph-btn" class="p-2 bg-slate-800 hover:bg-slate-700 rounded flex flex-col items-center justify-center space-y-1 text-xs">
+                        <i class="fas fa-plus-circle text-blue-300 text-sm"></i>
+                        <span>New Graph</span>
+                    </button>
+                    <button id="save-as-graph2-btn" class="p-2 bg-slate-800 hover:bg-slate-700 rounded flex flex-col items-center justify-center space-y-1 text-xs">
+                        <i class="fas fa-save text-blue-400 text-sm"></i>
+                        <span>Save Graph 2</span>
+                    </button>
+                    <button id="delete-all-graphs-btn" class="p-2 bg-red-600 hover:bg-red-700 text-white rounded flex flex-col items-center justify-center space-y-1 text-xs">
+                        <i class="fas fa-trash-alt text-white text-sm"></i>
+                        <span>Delete All</span>
+                    </button>
+                </div>
             </div>
         </div>
         
