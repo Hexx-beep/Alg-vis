@@ -2,27 +2,73 @@
     0%, 100% { opacity: 0.7; }
     50% { opacity: 1; }
 }
+/* Main content area */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 4rem); /* Adjust based on header height */
+    overflow: hidden; /* Prevent content from overflowing */
+}
+
+/* Graph area contains graph and sidebar */
+.graph-area {
+    display: flex;
+    min-height: 0;
+    flex: 1;
+    width: 100%;
+    position: relative;
+}
+
+/* Force the graph to take remaining space */
+.graph-area > .graph-container {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Graph container */
 .graph-container {
-        width: 80%; /* Reduced from full width */
-        height: 75vh; /* Fixed height instead of flex-1 */
-    }
-    
-    .sidebar {
-        width: 30%; /* Adjusted to match the 70-30 split */
-    }
-    
-    .main-container {
-        flex-direction: row; /* Ensure side-by-side layout */
-    }
-.main-container {
-        flex-direction: column;
-    }
-    
-    @media (min-width: 768px) {
-        .main-container {
-            flex-direction: row;
-        }
-    }
+    flex: 1 1 auto !important;
+    min-width: 0;
+    position: relative;
+    width: calc(100% - 750px) !important; /* Adjust based on sidebar and results width */
+    max-width: none !important;
+    margin-right: 0 !important;
+    background-color: #0f172a;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 400px !important;
+    min-width: 400px !important;
+    border-left: 1px solid #334155;
+    overflow-y: auto;
+    flex-shrink: 0 !important;
+    background-color: #0f172a;
+    padding: 1rem;
+}
+
+/* Results section */
+/* Results section */
+.results-container {
+    flex: 0 0 380px !important; /* Fixed width, increased from 350px */
+    height: calc(100vh - 4rem) !important;
+    overflow-y: auto !important;
+    border-top: 1px solid #334155 !important;
+    margin: 0 !important;
+    padding: 0.5rem 1rem !important;
+    position: relative !important;
+    background-color: #0f172a !important;
+    border-radius: 0 0.5rem 0.5rem 0 !important;
+    border-left: none !important;
+    float: left !important;
+    clear: both !important;
+}
+
+/* Adjust graph canvas to take full height of container */
+.graph-canvas {
+    height: 100%;
+    min-height: 400px; /* Minimum height for the graph */
+}
 .page-transition {
     position: fixed;
     top: 0;
@@ -258,6 +304,8 @@
 }
 body {
     transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+    overflow-y: hidden; /* Prevent vertical scrolling */
+    height: 100vh; /* Set height to viewport height */
 }
 body.page-fade-out {
     opacity: 0;

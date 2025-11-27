@@ -307,9 +307,7 @@ function init() {
         initModals();
     
     // Theme toggle
-    document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
-    document.getElementById('delete-all-graphs-btn').addEventListener('click', deleteAllGraphs);
-    
+   
     // Update initial values
     updateNodeCountValue();
     updateDensityValue();
@@ -1547,6 +1545,51 @@ function deleteAllGraphs() {
     // 8. Visual feedback
     alert("All graphs have been deleted. Reset to empty Graph 1.");
 }
+
+// Add event listeners after the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Delete all graphs button
+    document.getElementById('delete-all-graphs-btn').addEventListener('click', deleteAllGraphs);
+    
+    // Refresh graph button - reset visualization
+    document.getElementById('refresh-graph').addEventListener('click', function() {
+        // Reset graph visualization
+        resetGraphVisualization();
+        
+        // Remove any keyframe animations
+        const styleSheets = Array.from(document.styleSheets);
+        styleSheets.forEach(sheet => {
+            try {
+                const rules = Array.from(sheet.cssRules || []);
+                rules.forEach((rule, index) => {
+                    if (rule.type === CSSRule.KEYFRAMES_RULE) {
+                        sheet.deleteRule(index);
+                    }
+                });
+            } catch (e) {
+                // Skip cross-origin stylesheets that throw SecurityError
+                console.log('Could not access stylesheet:', e);
+            }
+        });
+        
+        // Remove any inline animations
+        document.querySelectorAll('*').forEach(el => {
+            el.style.animation = '';
+            el.style.webkitAnimation = '';
+        });
+        
+        // Show feedback
+        const notification = document.createElement('div');
+        notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg';
+        notification.textContent = 'Graph visualization and animations have been reset';
+        document.body.appendChild(notification);
+        
+        // Remove notification after 2 seconds
+        setTimeout(() => {
+            notification.remove();
+        }, 2000);
+    });
+});
 
 function verifyGraph() {
     console.log("Current Graph:", {

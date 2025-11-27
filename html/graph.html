@@ -15,10 +15,7 @@
                 Algorithm Visualizer
             </h1>
             <div class="flex space-x-2">
-                <button id="theme-toggle" class="p-3 rounded-full hover:bg-indigo-600/30 transition-colors shadow-lg">
-                    <i class="fas fa-sun text-xl"></i>
-                </button>
-                <button class="p-2 rounded-full hover:bg-slate-800 tooltip">
+<button class="p-2 rounded-full hover:bg-slate-800 tooltip">
                     <i class="fas fa-cog glow-effect text-slate-300"></i>
                     <span class="tooltip-text">Settings</span>
                 </button>
@@ -44,14 +41,11 @@
                 <i class="fas fa-question-circle"></i>
                 <span>Help</span>
             </button>
-            <button id="run-algorithm" class="px-4 py-2 bg-gradient-to-r from-teal-500 to-blue-500 hover:opacity-90 rounded-lg flex items-center space-x-2">
-                <i class="fas fa-play"></i>
-                <span>Run</span>
-            </button>
         </div>
     </header>
 
-    <div class="main-container flex flex-1 overflow-hidden">
+    <div class="main-content flex flex-col flex-1 overflow-hidden">
+        <div class="graph-area flex flex-1 overflow-hidden">
         <div class="graph-container relative flex-1 p-4">
             <div class="absolute top-4 left-4 z-10 flex space-x-2">
                 <div class="bg-slate-900/80 backdrop-blur-sm rounded-lg p-2 flex items-center space-x-2">
@@ -143,6 +137,16 @@
 
         <div class="sidebar w-80 bg-slate-900 border-l border-slate-800 overflow-y-auto flex flex-col">
             <div class="p-4 border-b border-slate-800">
+                <div class="flex justify-center space-x-4 mb-4">
+                    <button id="run-algorithm" class="flex-1 px-4 py-1.5 bg-gradient-to-r from-teal-500 to-blue-500 hover:opacity-90 rounded-lg flex items-center justify-center space-x-1.5 text-sm font-medium">
+                        <i class="fas fa-play text-xs"></i>
+                        <span>Run</span>
+                    </button>
+                    <button id="refresh-graph" class="flex-1 px-4 py-1.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:opacity-90 rounded-lg flex items-center justify-center space-x-1.5 text-sm font-medium">
+                        <i class="fas fa-sync-alt text-xs"></i>
+                        <span>Refresh</span>
+                    </button>
+                </div>
                 <h2 class="text-lg font-semibold text-slate-200 mb-2">Algorithm Selection</h2>
                 <div class="grid grid-cols-2 gap-2">
                     <button class="algorithm-btn px-3 py-2 bg-slate-800 hover:bg-slate-700 rounded text-sm flex items-center justify-center" data-algo="prim">
@@ -390,18 +394,12 @@
             
             <div class="p-4 flex-1">
                 <h2 class="text-lg font-semibold text-slate-200 mb-2">Graph Controls</h2>
-                <div class="mt-4">
-                    <button id="export-btn" class="w-full py-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:opacity-90 rounded-lg text-sm">
-                        <i class="fas fa-video mr-2"></i>
-                        Export Visualization
-                    </button>
-                </div>
             </div>
         </div>
-    </div>
-
-    <!-- Results section below the graph -->
-    <div class="results-container bg-slate-900 border-t border-slate-800 p-4">
+        
+        <!-- Results section below the graph -->
+        <div class="results-container bg-slate-900 border-t border-slate-800 p-4 flex-1 overflow-auto">
+            <div class="max-w-7xl mx-auto">
         <div class="max-w-7xl mx-auto">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-xl font-semibold text-slate-200">Algorithm Results</h2>
@@ -431,6 +429,7 @@
                 <div id="isomorphism-results" class="hidden">
                     <!-- Isomorphism results will be inserted here -->
                 </div>
+            </div>
             </div>
         </div>
     </div>
